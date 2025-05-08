@@ -1,4 +1,4 @@
-require('dotenv').config()
+require("dotenv").config();
 /*
 const { PORT, TELEGRAM_TOKEN, SERVER_URL } = process.env
 const axios = require('axios')
@@ -8,9 +8,8 @@ const bodyParser = require('body-parser');
 const { axiosInstance } = require("./lib/axios");
 */
 
-const { handler, handleMesage, setTelegramWebhook } = require('./lib/telegram');
-const express = require('express');
-
+const { handler, handleMesage, setTelegramWebhook } = require("./lib/telegram");
+const express = require("express");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -22,20 +21,18 @@ const WEBHOOK_URL = process.env.WEBHOOK_URL;
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-
-app.post('/', async (req, res) => {
-    console.log(req.body);
-    res.send(await handler(req));
+app.post("/", async (req, res) => {
+  // console.log(req.body);
+  res.send(await handler(req));
 });
 
 // Route to verify server is running
 app.get("/", (req, res) => {
-    res.send("Anna Bot is running");
-    console.log("Anna Bot is running");
-  });
+  res.send("Anna Bot is running");
+  console.log("Anna Bot is running");
+});
 
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-    setTelegramWebhook(TELEGRAM_TOKEN, WEBHOOK_URL);
-  });
-  
+  console.log(`Server is running on port ${port}`);
+  setTelegramWebhook(TELEGRAM_TOKEN, WEBHOOK_URL);
+});
