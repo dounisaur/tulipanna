@@ -1,15 +1,15 @@
-require("dotenv").config();
+import "dotenv/config";
 /*
-const { PORT, TELEGRAM_TOKEN, SERVER_URL } = process.env
-const axios = require('axios')
-const qs = require('query-string')
-const express_session = require('express-session');
-const bodyParser = require('body-parser');
-const { axiosInstance } = require("./lib/axios");
+import { PORT, TELEGRAM_TOKEN, SERVER_URL } from process.env;
+import axios from 'axios';
+import qs from 'query-string';
+import express_session from 'express-session';
+import bodyParser from 'body-parser';
+import { axiosInstance } from "./lib/axios.js";
 */
 
-const { handler, handleMesage, setTelegramWebhook } = require("./lib/telegram");
-const express = require("express");
+import { handler, handleMessage, setTelegramWebhook } from "./lib/telegram.js";
+import express from "express";
 
 const app = express();
 const port = process.env.PORT || 3000;
