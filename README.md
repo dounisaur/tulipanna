@@ -12,19 +12,16 @@ A simple Express.js application with basic REST API endpoints.
 ## Getting Started
 
 1. Install dependencies:
-
 ```bash
 npm install
 ```
 
 2. Start the server:
-
 ```bash
 npm start
 ```
 
 Or for development with auto-reload:
-
 ```bash
 npm run dev
 ```
@@ -49,4 +46,4 @@ curl http://localhost:3000/api/items/1
 curl -X POST -H "Content-Type: application/json" \
   -d '{"name":"New Item"}' \
   http://localhost:3000/api/items
-```
+``` 

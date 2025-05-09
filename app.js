@@ -8,7 +8,7 @@ import bodyParser from 'body-parser';
 import { axiosInstance } from "./lib/axios.js";
 */
 
-import { handler, setTelegramWebhook } from "./lib/telegram.js";
+import { handler, handleMessage, setTelegramWebhook } from "./lib/telegram.js";
 import express from "express";
 
 const app = express();
