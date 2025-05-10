@@ -11,13 +11,14 @@
     "dev": "nodemon app.js"
   },
   "dependencies": {
+    "@langchain/openai": "^0.5.10",
     "axios": "^1.9.0",
     "body-parser": "^2.2.0",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express-session": "^1.18.1",
+    "langchain": "^0.3.24",
     "nodemon": "^3.1.10",
-    "query-string": "^9.1.2",
-    "tinify": "^1.8.0"
+    "query-string": "^9.1.2"
   }
 }
