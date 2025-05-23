@@ -1,4 +1,4 @@
-import { handler, setTelegramWebhook } from "./lib/telegram.js";
+import { setTelegramWebhook, createWebhookInfoHandler, processWebhook } from "./lib/telegram.js";
 import express from "express";
 import { loadEnvironmentVariables } from "./lib/setupEnvironment.js";
 
@@ -16,18 +16,15 @@ const WEBHOOK_URL = process.env.WEBHOOK_URL;
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-app.post("/", async (req, res) => {
-  // console.log(req.body);
-  res.send(await handler(req));
-});
-
-// Route to verify server is running
-app.get("/", (req, res) => {
-  res.send("Anna Bot is running");
-  console.log("Anna Bot is running");
-});
-
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
   setTelegramWebhook(TELEGRAM_TOKEN, WEBHOOK_URL);
 });
+
+// Webhook handler for daily bot
+app.post("/", (req, res) => {
+  console.log("/webhook-daily route");
+  processWebhook(req, res, TELEGRAM_TOKEN, "daily");
+});
+
+app.get("/webhook-daily", createWebhookInfoHandler(TELEGRAM_TOKEN, "daily"));
