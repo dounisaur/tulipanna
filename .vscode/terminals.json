@@ -1,0 +1,14 @@
+{
+  "version": "2.0.0",
+  "terminals": [
+    {
+      "name": "Docker Container",
+      "command": "docker run -p 3000:3000 --env-file .env.local tulipana-container",
+      "focus": true
+    },
+    {
+      "name": "General Terminal",
+      "focus": false
+    }
+  ]
+}
