@@ -1,7 +1,7 @@
 import { handler, setTelegramWebhook } from "./lib/telegram.js";
 import express from "express";
 import { loadEnvironmentVariables } from "./lib/setupEnvironment.js";
-
+import { processMessage } from "./lib/ragUtils.js";
 
 // Load environment variables
 loadEnvironmentVariables();
