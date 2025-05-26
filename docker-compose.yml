@@ -13,3 +13,18 @@ services:
     restart: unless-stopped
     environment:
       - NODE_ENV=production
+      - CHROMA_HOST=chromadb
+      - CHROMA_PORT=8000
+    depends_on:
+      - chromadb
+
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: chromadb-prod
+    ports:
+      - "8000:8000"
+    volumes:
+      - chroma_data_prod:/chroma/.chroma/index
+
+volumes:
+  chroma_data_prod:

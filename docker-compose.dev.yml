@@ -16,3 +16,18 @@ services:
     command: npm run dev
     environment:
       - NODE_ENV=development
+      - CHROMA_HOST=chromadb
+      - CHROMA_PORT=8000
+    depends_on:
+      - chromadb
+
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: chromadb-dev
+    ports:
+      - "8000:8000"
+    volumes:
+      - chroma_data_dev:/chroma/.chroma/index
+
+volumes:
+  chroma_data_dev:
