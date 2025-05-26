@@ -1,13 +1,28 @@
 {
-  "version": "2.0.0",
+  "autorun": false,
   "terminals": [
     {
       "name": "Docker Container",
-      "command": "docker run -p 3000:3000 --env-file .env.local tulipana-container",
-      "focus": true
+      "description": "Run the development server",
+      "focus": true,
+      "command": "./.vscode/docker-run.sh dev",
+      "icon": "server-environment"
     },
     {
-      "name": "General Terminal",
+      "name": "Server logs",
+      "description": "Development server logs",
+      "focus": true,
+      "command": "sleep 5 && ./.vscode/docker-logs.sh dev",
+      "icon": "output"
+    },
+    {
+      "name": "Docker Control",
+      "description": "Terminal 1",
+      "focus": false
+    },
+    {
+      "name": "Terminal",
+      "description": "Terminal 2",
       "focus": false
     }
   ]
