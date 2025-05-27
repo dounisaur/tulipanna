@@ -1,7 +1,6 @@
 import { handler, setTelegramWebhook } from "./lib/telegram.js";
 import express from "express";
 import { loadEnvironmentVariables } from "./lib/setupEnvironment.js";
-import { processMessage } from "./lib/ragUtils.js";
 
 // Load environment variables
 loadEnvironmentVariables();
@@ -17,7 +16,6 @@ const WEBHOOK_URL = process.env.WEBHOOK_URL;
 app.use(express.json());
 
 app.post("/", async (req, res) => {
-  // console.log(req.body);
   res.send(await handler(req));
 });
 
