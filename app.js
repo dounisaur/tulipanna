@@ -1,7 +1,10 @@
-import { setTelegramWebhook, createWebhookInfoHandler, processWebhook } from "./lib/telegram.js";
+import {
+  setTelegramWebhook,
+  createWebhookInfoHandler,
+  processWebhook,
+} from "./lib/telegram.js";
 import express from "express";
 import { loadEnvironmentVariables } from "./lib/setupEnvironment.js";
-
 
 // Load environment variables
 loadEnvironmentVariables();
@@ -23,8 +26,7 @@ app.listen(port, () => {
 
 // Webhook handler for daily bot
 app.post("/", (req, res) => {
-  console.log("/webhook-daily route");
-  processWebhook(req, res, TELEGRAM_TOKEN, "daily");
+  processWebhook(req, res, TELEGRAM_TOKEN);
 });
 
-app.get("/webhook-daily", createWebhookInfoHandler(TELEGRAM_TOKEN, "daily"));
+app.get("/", createWebhookInfoHandler(TELEGRAM_TOKEN));
