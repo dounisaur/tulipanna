@@ -45,13 +45,9 @@ fi
 print_message "Removing ChromaDB volume..."
 docker volume rm $VOLUME_NAME
 
-# Start the containers again
+# Start the containers using docker-run.sh
 print_message "Starting containers..."
-if [ "$ENV" = "dev" ]; then
-    docker-compose -f docker-compose.dev.yml up -d
-else
-    docker-compose -f docker-compose.yml up -d
-fi
+./.vscode/docker-run.sh $ENV
 
 # Wait for ChromaDB to be ready
 print_message "Waiting for ChromaDB to be ready..."
