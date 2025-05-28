@@ -1,4 +1,4 @@
-import { handler, setTelegramWebhook } from "./lib/telegram.js";
+import { messageHandler, setTelegramWebhook } from "./lib/telegram.js";
 import express from "express";
 import { loadEnvironmentVariables } from "./lib/setupEnvironment.js";
 
@@ -16,7 +16,7 @@ const WEBHOOK_URL = process.env.WEBHOOK_URL;
 app.use(express.json());
 
 app.post("/", async (req, res) => {
-  res.send(await handler(req));
+  res.send(await messageHandler(req));
 });
 
 // Route to verify server is running
