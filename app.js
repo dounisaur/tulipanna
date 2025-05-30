@@ -1,4 +1,4 @@
-import { messageHandler, setTelegramWebhook } from "./lib/telegram.js";
+import { messageHandler, setTelegramWebhook } from "./lib/telegramUtils.js";
 import express from "express";
 import { loadEnvironmentVariables } from "./lib/setupEnvironment.js";
 
