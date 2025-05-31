@@ -1,6 +1,6 @@
 // Import necessary modules
 import { setTelegramWebhook } from "./lib/telegramUtils.js";
-import { messageHandler } from "./lib/handlerUtils.js";
+import { handleTelegramMessage } from "./lib/handlerUtils.js";
 import express from "express";
 import { loadEnvironmentVariables } from "./lib/setupEnvironment.js";
 
@@ -22,7 +22,7 @@ app.use(express.json());
 // Handle incoming POST requests for Telegram webhook
 app.post("/", async (req, res) => {
   // Process the request and send the response
-  res.send(await messageHandler(req));
+  res.send(await handleTelegramMessage(req));
 });
 
 // Handle incoming GET requests to verify server is running
