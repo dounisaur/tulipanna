@@ -1,6 +1,6 @@
 // Import necessary modules
 import { setTelegramWebhook } from "./lib/telegramUtils.js";
-import { handleTelegramMessage } from "./lib/handlerUtils.js";
+import { handleTelegramMessage } from "./lib/messageHandler.js";
 import express from "express";
 import { loadEnvironmentVariables } from "./lib/setupEnvironment.js";
 
