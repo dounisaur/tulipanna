@@ -1,0 +1,29 @@
+{
+  "autorun": false,
+  "terminals": [
+    {
+      "name": "Docker Container",
+      "description": "Run the development server",
+      "focus": true,
+      "command": "./.vscode/docker-run.sh dev",
+      "icon": "server-environment"
+    },
+    {
+      "name": "Server logs",
+      "description": "Development server logs",
+      "focus": true,
+      "command": "sleep 5 && ./.vscode/docker-logs.sh dev",
+      "icon": "output"
+    },
+    {
+      "name": "Docker Control",
+      "description": "Terminal 1",
+      "focus": false
+    },
+    {
+      "name": "Terminal",
+      "description": "Terminal 2",
+      "focus": false
+    }
+  ]
+}
