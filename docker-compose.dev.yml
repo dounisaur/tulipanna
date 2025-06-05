@@ -12,7 +12,7 @@ services:
       - .env.local
     volumes:
       - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - node_modules:/usr/src/app/node_modules
     command: npm run dev
     environment:
       - NODE_ENV=development
@@ -31,3 +31,4 @@ services:
 
 volumes:
   chroma_data_dev:
+  node_modules:
