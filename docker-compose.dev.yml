@@ -27,7 +27,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - chroma_data_dev:/chroma/.chroma/index
+      - chroma_data_dev:/data
 
 volumes:
   chroma_data_dev:
