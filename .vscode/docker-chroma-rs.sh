@@ -33,25 +33,44 @@ VOLUME_NAME="chroma_data_${ENV}"
 
 print_message "Starting ChromaDB reset process for $ENV environment..."
 
-# Stop the containers
-print_message "Stopping containers..."
+# Stop the containers and remove volumes
+print_message "Stopping containers and removing volumes..."
 if [ "$ENV" = "dev" ]; then
-    docker-compose -f docker-compose.dev.yml down
+    docker-compose -f docker-compose.dev.yml down -v
 else
-    docker-compose -f docker-compose.yml down
+    docker-compose -f docker-compose.yml down -v
 fi
 
-# Remove the volume
-print_message "Removing ChromaDB volume..."
-docker volume rm $VOLUME_NAME
+# Ensure the volume is removed
+print_message "Ensuring ChromaDB volume is removed..."
+docker volume rm $VOLUME_NAME 2>/dev/null || true
 
-# Start the containers using docker-run.sh
+# Start the containers
 print_message "Starting containers..."
-./.vscode/docker-run.sh $ENV
+if [ "$ENV" = "dev" ]; then
+    docker-compose -f docker-compose.dev.yml up -d
+else
+    docker-compose -f docker-compose.yml up -d
+fi
 
 # Wait for ChromaDB to be ready
 print_message "Waiting for ChromaDB to be ready..."
 sleep 5
 
-print_success "ChromaDB has been reset successfully!"
-print_message "The database is now empty and ready to use."
+# Verify ChromaDB is empty
+print_message "Verifying ChromaDB is empty..."
+if [ "$ENV" = "dev" ]; then
+    CONTAINER_NAME="chromadb-dev"
+else
+    CONTAINER_NAME="chromadb-prod"
+fi
+
+# Check if the database is empty by verifying its size
+DB_SIZE=$(docker exec $CONTAINER_NAME sh -c 'ls -l /data/chroma.sqlite3 | awk "{print \$5}"')
+if [ "$DB_SIZE" -lt 200000 ]; then  # Empty ChromaDB is typically around 163KB
+    print_success "ChromaDB has been reset successfully!"
+    print_message "The database is now empty and ready to use."
+else
+    print_error "ChromaDB reset may have failed. Database size is $DB_SIZE bytes."
+    exit 1
+fi
